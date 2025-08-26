@@ -42,6 +42,7 @@ export default [
       ...jsxA11yPlugin.configs.recommended.rules,
       ...reactPlugin.configs.recommended.rules,
       ...reactHooksPlugin.configs.recommended.rules,
+      'react/react-in-jsx-scope': 'off',
 
       // Your custom rules
       indent: ['error', 2, { SwitchCase: 1 }],

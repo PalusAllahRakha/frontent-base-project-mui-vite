@@ -1,7 +1,6 @@
 import { AgGridReact } from 'ag-grid-react';
 import React, { useRef } from 'react';
 
-import 'ag-grid-enterprise';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-balham.css';
 
@@ -45,7 +44,7 @@ const CollapseAbleTable = ({
         detailRowAutoHeight={true}
         detailRowHeight={detailRowHeight}
         enableCellTextSelection={true}
-        enableRangeSelection={true}
+        // enableRangeSelection={true}
         getRowHeight={getRowHeight}
         getRowNodeId={getRowNodeId ? getRowNodeId : ({ id }) => id}
         gridOptions={gridOptions}

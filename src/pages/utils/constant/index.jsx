@@ -524,6 +524,14 @@ export const headerSelectOptions = [
   { value: 'AMSNFL', label: 'AMS NFL' },
   { value: 'AMSNFLPerSize', label: 'AMS NFL per size' }
 ];
+export const operators = [
+  { value: '>', label: '>' },
+  { value: '<', label: '<' },
+  { value: '=', label: '=' },
+  { value: '!=', label: '≠' },
+  { value: '<=', label: '≤' },
+  { value: '>=', label: '≥' },
+];
 
 export const defaultColDef = {
   resizable: true,
@@ -561,6 +569,10 @@ export const AMSNBAPerSizeColumnDefs = [
     sortable: true,
     minWidth: 280,
     filter: false,
+    headerComponentParams: {
+      multiSelect: true,
+      enablePin: true
+    }
   },
   {
     colId: 'category',
@@ -571,6 +583,10 @@ export const AMSNBAPerSizeColumnDefs = [
     sortable: true,
     minWidth: 200,
     filter: true,
+    headerComponentParams: {
+      enablePin: true,
+      filterOptions: ['Jersey', 'Shorts', 'Hoodie'],
+    }
   },
   {
     colId: 'style',
@@ -581,6 +597,10 @@ export const AMSNBAPerSizeColumnDefs = [
     minWidth: 190,
     filter: true,
     headerComponent: CustomHeader,
+    headerComponentParams: {
+      enablePin: true,
+      comparison: true,
+    }
   },
   {
     colId: 'asin',

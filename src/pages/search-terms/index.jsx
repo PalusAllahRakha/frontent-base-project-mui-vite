@@ -4,6 +4,10 @@ import React, { useMemo, useState } from 'react';
 import Pagination from '../../components/pagination/index.jsx';
 import CollapseAbleTable from '../../components/table/index.jsx';
 import { SearchTermsRowData as rowData, SearchTermsColumnDefinitions as colDef, defaultColDef as defColDef } from '../utils/constant/index.jsx';
+import { FileUploadModal } from './file-Upload-modal/index.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeModal, } from '../../features/search-terms/file-upload.jsx';
+
 
 const SearchTerms = () => {
   const SearchTermsRowData = useMemo(() => rowData, []);
@@ -12,6 +16,12 @@ const SearchTerms = () => {
 
   const SearchTermsColumnDefinitions = useMemo(() => colDef, []);
   const defaultColDef = useMemo(() => defColDef, []);
+
+  const dispatch = useDispatch();
+  const closeModalHandler = () => {
+    dispatch(closeModal());
+  };
+  const open = useSelector((state) => state.fileUpload.openModal);
 
   return (
     <Box display="flex" flexDirection="column" gap={2}>
@@ -36,6 +46,10 @@ const SearchTerms = () => {
           setRowsPerPage(num);
           setPage(1);
         }}
+      />
+      <FileUploadModal
+        open={open}
+        onClose={closeModalHandler}
       />
     </Box>
   );

@@ -69,7 +69,10 @@ const theme = createTheme({
           PaperProps: {
             style: {
               maxHeight: 300,
-              minHeight: 100
+              minHeight: 100,
+              fontSize: 14,
+              fontWeight: 400,
+              color: '#222323'
             }
           }
         }

@@ -1,14 +1,23 @@
-import { useState } from 'react';
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 
-const fileUploadProvider = ({ children }) => {
-  const fileUploadContext = createContext();
-  const [file, setFile] = useState(null);
+export const FileUploadContext = createContext();
+
+const FileUploadProvider = ({ children }) => {
+  const [openModal, setOpenModal] = useState(false);
+
+  const openModalHandler = () => {
+    setOpenModal(true);
+  };
+
+  const closeModalHandler = () => {
+    setOpenModal(false);
+  };
 
   return (
-    <fileUploadContext.Provider value={{ file, setFile }}>
+    <FileUploadContext.Provider value={{ openModal, openModalHandler, closeModalHandler }}>
       {children}
-    </fileUploadContext.Provider>
+    </FileUploadContext.Provider>
   );
 };
-export default fileUploadProvider;
+
+export default FileUploadProvider;

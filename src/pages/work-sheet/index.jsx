@@ -1,10 +1,10 @@
 import { Box } from '@mui/material';
-import React, { useMemo, useRef, useState, useCallback, useContext } from 'react';
+import React, { useMemo, useRef, useState, useCallback } from 'react';
 
 import Pagination from '../../components/pagination/index.jsx';
 import CollapseAbleTable from '../../components/table/index.jsx';
 import { WorksheetRowData, WorksheetColumnDefinitions, defaultColDef as defColDef, AMSNBAPerSizeColumnDefs, AMSNNCAColumnDefs, AMSNBAPerSizeRowData, AMSNNCARowData } from '../utils/constant/index.jsx';
-import { GridContext } from '../../hooks/work-sheet-page-filter/work-sheet-page-select.jsx';
+import { useSelector } from 'react-redux';
 
 const STORAGE_KEY = 'worksheet_pin_states';
 
@@ -16,7 +16,6 @@ const WorkSheet = () => {
 
   const gridRef = useRef(null);
   const defaultColDef = useMemo(() => defColDef, []);
-  const { selectedOption } = useContext(GridContext);
 
   const onColumnPinned = useCallback(() => {
     if (!columnApi) return;
@@ -44,6 +43,8 @@ const WorkSheet = () => {
       params.columnApi.applyColumnState({ state: colState });
     }
   }, []);
+
+  const selectedOption = useSelector((state) => state.grid.selectedOption);
 
   const columnDefs = useMemo(() => {
     if (selectedOption === 'AMSNBAPerSize') {
@@ -79,6 +80,7 @@ const WorkSheet = () => {
         rowHeight={32}
         pagination={false}
         paginationPageSize={10}
+        suppressRowClickSelection={true}
         onColumnPinned={onColumnPinned}
       />
       <Pagination

@@ -77,6 +77,7 @@ const StaticInput = ({
           ...InputProps
         }}
         inputProps={inputProps}
+        sx={sx}
       />
       {helperText && (
         <FormHelperText>{helperText}</FormHelperText>
